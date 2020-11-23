@@ -51,9 +51,12 @@ def smooth_uv_islands(self, context):
 	# Select Edges
 	bpy.ops.mesh.select_all(action='DESELECT')
 	bpy.ops.mesh.select_mode(use_extend=False, use_expand=False, type='EDGE')
+	bpy.context.scene.tool_settings.use_uv_select_sync = True
+	bpy.ops.mesh.select_all(action='SELECT')
 	bpy.ops.uv.textools_select_islands_outline()
 	bpy.ops.mesh.mark_sharp()
 	bpy.ops.mesh.select_all(action='DESELECT')
+	bpy.context.scene.tool_settings.use_uv_select_sync = False
 	
 	# Apply Edge split modifier
 	bpy.context.object.data.use_auto_smooth = True
